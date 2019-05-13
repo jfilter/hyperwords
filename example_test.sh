@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+set -x
 
 # Download and install word2vecf
 if [ ! -f word2vecf ]; then
@@ -6,10 +8,14 @@ if [ ! -f word2vecf ]; then
 fi
 
 
-# Download corpus. We chose a small corpus for the example, and larger corpora will yield better results.
-wget http://www.statmt.org/wmt14/training-monolingual-news-crawl/news.2010.en.shuffled.gz
-gzip -d news.2010.en.shuffled.gz
 CORPUS=news.2010.en.shuffled
+# Download corpus. We chose a small corpus for the example, and larger corpora will yield better results.
+if test -f "$CORPUS"; then
+    echo 'file exists, skip download'
+else
+    wget http://www.statmt.org/wmt14/training-monolingual-news-crawl/news.2010.en.shuffled.gz
+    gzip -d news.2010.en.shuffled.gz
+fi
 
 # Clean the corpus from non alpha-numeric symbols
 scripts/clean_corpus.sh $CORPUS > $CORPUS.clean
@@ -18,13 +24,13 @@ scripts/clean_corpus.sh $CORPUS > $CORPUS.clean
 # Create two example collections of word-context pairs:
 
 # A) Window size 2 with "clean" subsampling
-mkdir w2.sub
+mkdir -p w2.sub
 python hyperwords/corpus2pairs.py --win 2 --sub 1e-5 ${CORPUS}.clean > w2.sub/pairs
 scripts/pairs2counts.sh w2.sub/pairs > w2.sub/counts
 python hyperwords/counts2vocab.py w2.sub/counts
 
 # B) Window size 5 with dynamic contexts and "dirty" subsampling
-mkdir w5.dyn.sub.del
+mkdir -p w5.dyn.sub.del
 python hyperwords/corpus2pairs.py --win 5 --dyn --sub 1e-5 --del ${CORPUS}.clean > w5.dyn.sub.del/pairs
 scripts/pairs2counts.sh w5.dyn.sub.del/pairs > w5.dyn.sub.del/counts
 python hyperwords/counts2vocab.py w5.dyn.sub.del/counts
