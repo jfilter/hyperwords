@@ -8,13 +8,13 @@ def main():
     args = docopt("""
     Usage:
         ws_eval.py [options] <representation> <representation_path> <task_path>
-    
+
     Options:
         --neg NUM    Number of negative samples; subtracts its log from PMI (only applicable to PPMI) [default: 1]
         --w+c        Use ensemble of word and context vectors (not applicable to PPMI)
         --eig NUM    Weighted exponent of the eigenvalue matrix (only applicable to SVD) [default: 0.5]
     """)
-    
+
     data = read_test_set(args['<task_path>'])
     representation = create_representation(args)
     correlation = evaluate(representation, data)
@@ -27,7 +27,7 @@ def read_test_set(path):
         for line in f:
             x, y, sim = line.strip().lower().split()
             test.append(((x, y), sim))
-    return test 
+    return test
 
 
 def evaluate(representation, data):
