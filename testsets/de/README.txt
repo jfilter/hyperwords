@@ -1,10 +1,17 @@
 # Sources
 
-The evaluation datasets for German come from two sources: 1. Deep Semantic Analogies Dataset, 2. Bachelors' Thesis by Andreas Müller: https://devmount.github.io/GermanWordEmbeddings/
+The evaluation datasets for German come from two sources:
+
+1. Deep Semantic Analogies Dataset
+2. Bachelors' Thesis by Andreas Müller: https://devmount.github.io/GermanWordEmbeddings/
+3. Word Similarity: https://www.informatik.tu-darmstadt.de/ukp/research_6/data/semantic_relatedness/german_relatedness_datasets/index.en.jsp
+4. Multilingual SimLex999 and WordSim353: http://leviants.com/ira.leviant/MultilingualVSMdata.html
 
 
 Deep Semantic Analogies Dataset
 --------------------------------------------
+
+Paper: https://www.aclweb.org/anthology/W15-0105
 
 This collection contains six newly created semantic datasets.
 
