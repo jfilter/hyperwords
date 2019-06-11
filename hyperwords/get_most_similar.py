@@ -19,7 +19,7 @@ def main():
     representation = create_representation(args)
     for w in words:
         print w
-        print representation.closest(x)
+        print representation.closest(w)
 
 
 if __name__ == '__main__':
