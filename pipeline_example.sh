@@ -8,7 +8,7 @@ out_folder=example
 threads=4
 
 # sometimes you don't wanna run with all the data
-limit_rows=1000000
+limit_rows=0
 
 # disable word2vec (use use GenSim?)
 word2vec=0
