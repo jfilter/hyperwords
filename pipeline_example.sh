@@ -31,7 +31,7 @@ if [ -n "$1" ] || ! [ $1 = "evaluate" ]; then
         echo 'file exists, skip download'
     else
         wget -nc http://www.statmt.org/wmt14/training-monolingual-news-crawl/news.2010.en.shuffled.gz
-        cp news.2010.en.shuffled.gz.1 news.2010.en.shuffled.gz
+        cp news.2010.en.shuffled.gz news.2010.en.shuffled.gz
         gzip -d $corpus.gz
 
         if [ "$limit_rows" -gt "0" ]; then
