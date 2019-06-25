@@ -30,7 +30,7 @@ if ! [ $1 = "evaluate" ]; then
     if test -f "$out_folder/$corpus_clean"; then
         echo 'file exists, skip download'
     else
-        #wget -nc http://www.statmt.org/wmt14/training-monolingual-news-crawl/news.2010.en.shuffled.gz
+        wget -nc http://www.statmt.org/wmt14/training-monolingual-news-crawl/news.2010.en.shuffled.gz
         cp news.2010.en.shuffled.gz.1 news.2010.en.shuffled.gz
         gzip -d $corpus.gz
 
