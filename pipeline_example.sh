@@ -23,7 +23,7 @@ if [ $word2vec != 0 ]; then
     fi
 fi
 
-if ! [ $1 = "evaluate" ]; then
+if [ -n "$1" ] || ! [ $1 = "evaluate" ]; then
 
     corpus=news.2010.en.shuffled
     # Download corpus. We chose a small corpus for the $out_folder, and larger corpora will yield better results.
